@@ -23,7 +23,7 @@ public class SwaggerConfig {
         Contact contact = new Contact("段耀威", "http://xxx.xxx.com/联系人访问链接", "联系人邮箱");
         return new ApiInfo(
                 "Swagger学习", // 标题
-                "学习演示如何配置Swagger", // 描述
+                "搭建整个环境", // 描述
                 "v1.0", // 版本
                 "http://terms.service.url/组织链接", // 组织链接
                 contact, // 联系人信息

@@ -1,0 +1,25 @@
+#指明端口号 以及 上下文路径
+server:
+  port: 8080
+  servlet:
+    context-path: /duan
+
+#配置mysql
+
+#配置redis
+spring:
+  redis:
+    database: 1
+    host: 127.0.0.1
+    connect-timeout: 3000
+    port: 6379
+    password:
+  datasource:
+    url: jdbc:mysql://localhost:3306/ssm?useUnicode=true&characterEncoding=utf-8&serverTimezone=GMT%2B8
+    username: root
+    password: root
+    driver-class-name: com.mysql.cj.jdbc.Driver
+
+#mybatis
+mybatis:   #mybatis扫描到xml文件的位置
+  mapper-locations: classpath:com/baidu/springboot/dao/*Mapper.xml

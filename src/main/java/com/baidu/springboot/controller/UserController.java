@@ -1,20 +1,37 @@
 package com.baidu.springboot.controller;
 
 import com.baidu.springboot.bean.User;
+import com.baidu.springboot.commons.CodeCommons;
+import com.baidu.springboot.commons.Response;
+import com.baidu.springboot.service.impl.UserServiceImpl;
+import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.*;
 
+@Api(value = "UserController", tags = "01 用户管理")
+@RequestMapping("/user")
 @RestController
+@CrossOrigin
 public class UserController {
 
 
-    @ApiOperation("段耀威的接口")
-    @PostMapping("/duan")
-    public String kuang(@ApiParam("这个名字会被返回")String username){
-        return username;
+    @Autowired
+    private UserServiceImpl userService;
+
+    @ApiOperation(value = "1.1 根据id返回用户信息", notes = "根据id返回用户信息")
+    @RequestMapping(value = "/getUserById", method = RequestMethod.POST)
+    public Response kuang(Integer param){
+        Response response = new Response();
+        User user = userService.selectByPrimaryKey(param);
+        if (user != null){
+            response.setOk(CodeCommons.SUCCESS,user);
+        }else {
+            response.setError(CodeCommons.FAIL,CodeCommons.USER_ISNOTEXISTS);
+        }
+        return response;
     }
+
+
 }
